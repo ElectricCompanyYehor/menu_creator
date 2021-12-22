@@ -96,10 +96,6 @@
             <TextBox HorizontalAlignment="Left" Margin="101,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="73" Visibility="Collapsed"/>
             <Button Content="🔍" HorizontalAlignment="Left" Height="18" Margin="175,60,0,0" VerticalAlignment="Top" Width="18" FontSize="11" Visibility="Collapsed"/>
             <Button Content="i" HorizontalAlignment="Left" Height="16" Margin="165,44,0,0" VerticalAlignment="Top" Width="10" Visibility="Collapsed"/>
-            <ComboBox HorizontalAlignment="Left" Margin="86,49,0,0" VerticalAlignment="Top" Width="120">
-                <Button Content="Button"/>
-                <TextBox TextWrapping="Wrap" Text="TextBox" Width="120"/>
-            </ComboBox>
         </Grid>
 
 
