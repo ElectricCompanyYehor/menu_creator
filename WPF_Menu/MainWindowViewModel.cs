@@ -59,6 +59,18 @@ namespace WPF_Menu
             }
         }
 
+        private string _comment;
+
+        public string Comment
+        {
+            get => _comment;
+
+            set
+            {
+                Set(() => Comment, ref _comment, value);
+            }
+        }
+
         public MainWindowViewModel()
         {
             Tabs = new List<Tab>();
