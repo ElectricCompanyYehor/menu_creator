@@ -1,21 +1,11 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPF_Menu
 {
@@ -25,12 +15,6 @@ namespace WPF_Menu
     public partial class MainWindow : Window
     {
         public MainWindowViewModel ViewModel { get; set; }
-
-        JsonSerializerSettings settingsWithAllReferenceHandling = new JsonSerializerSettings
-        {
-            ObjectCreationHandling = ObjectCreationHandling.Replace,
-            TypeNameHandling = TypeNameHandling.Auto
-        };
 
         private async void SaveButton_click(object sender, RoutedEventArgs e)
         {
@@ -80,9 +64,7 @@ namespace WPF_Menu
 
         public MainWindow()
         {
-
             InitializeComponent();
-
 
             ViewModel = new MainWindowViewModel();
             DataContext = this;
@@ -94,28 +76,6 @@ namespace WPF_Menu
             ViewModel.Tabs.Add(first);
 
             first.Dishes.Add(new Dish() { Name = "Your meal/drink", Weight = 250, Price = 110, Currency = ViewModel.Currencies.First(), Unit = ViewModel?.Units?.FirstOrDefault() });
-        }
-
-
-        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
-
-        private void price_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            var texttoChange = e.Text;
-            if (!string.IsNullOrEmpty(e.Text))
-            {
-                foreach (char item in e.Text)
-                {
-                    if (!char.IsDigit(item))
-                    {
-                        e.Handled = true;
-                    }
-                }
-            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

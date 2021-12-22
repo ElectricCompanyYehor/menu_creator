@@ -122,24 +122,13 @@
                       CanUserDeleteRows="True"
                       SelectedValue="{Binding ViewModel.SelectedTab.SelectedDish}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="*"
-                                        Binding="{Binding Path=Name}"
-                                        Header="Name" />
-                    <DataGridTextColumn Width="*"
-                                        Binding="{Binding Path=Weight}"
-                                        Header="Weight" />
-                    <DataGridTextColumn Width="95"
-                                        Binding="{Binding Path=CountOfPieces}"
-                                        Header="Count of pieces" />
-                    <DataGridTextColumn Width="150"
-                                        Binding="{Binding Path=CountOfPiecesComment}"
-                                        Header="Count of pieces comment" />
-                    <DataGridTemplateColumn Width="*"
-                                            Header="Unit"
-                                            IsReadOnly="False">
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="*" />
+                    <DataGridTextColumn Header="Weight" Binding="{Binding Path=Weight}" Width="*" />
+                    <DataGridTextColumn Header="Count of pieces" Binding="{Binding Path=CountOfPieces}" Width="95"/>
+                    <DataGridTemplateColumn Header="Unit"  IsReadOnly="False" Width="150">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding ElementName=DishesDataGrid, Path=DataContext.ViewModel.Units, Mode=OneTime}" SelectedItem="{Binding Unit, Mode=TwoWay}">
+                                <ComboBox ItemsSource="{Binding ElementName=DishesDataGrid, Path=DataContext.ViewModel.Units, Mode=OneTime}" SelectedItem="{Binding Unit, Mode=TwoWay}" >
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding}" />
@@ -149,18 +138,13 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Width="*"
-                                        Binding="{Binding Path=Price}"
-                                        Header="Price" />
-                    <DataGridTextColumn Width="*"
-                                        Binding="{Binding Path=Currency}"
-                                        Header="Currency"
-                                        IsReadOnly="True" />
+                    <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" Width="*" />
+                    <DataGridTextColumn Header="Currency" Binding="{Binding Path=Currency}" IsReadOnly="True" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
-        <Grid Grid.RowSpan="2" Grid.Column="2">
+        <Grid Grid.Column="2" Grid.RowSpan="2">
 
             <Button x:Name="SaveButton"
                     Width="100"
@@ -184,153 +168,26 @@
                     Click="Button_Click"
                     Content="Add">
                 <Button.Effect>
-                    <DropShadowEffect BlurRadius="5"
-                                      Direction="50"
-                                      Opacity="1"
-                                      ShadowDepth="22" />
+                    <DropShadowEffect BlurRadius="5" Direction="50" Opacity="1" ShadowDepth="22"/>
                 </Button.Effect>
             </Button>
-            <ComboBox Width="120"
-                      Margin="0,130,10,0"
-                      VerticalAlignment="Top"
-                      HorizontalAlignment="Right"
-                      ItemsSource="{Binding ViewModel.Currencies}"
-                      SelectedItem="{Binding ViewModel.Currency,
-                                             Mode=TwoWay}" />
-            <TextBlock Margin="0,98,65,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Right"
-                       FontSize="20"
-                       FontWeight="Bold"
-                       Foreground="#FF8A8C98"
-                       Text="Settings:"
-                       TextWrapping="Wrap" />
-            <TextBlock Height="19"
-                       Margin="0,133,142,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Right"
-                       FontSize="15"
-                       FontWeight="Bold"
-                       Foreground="#FF94B5F1"
-                       Text="Currency"
-                       TextWrapping="Wrap" />
-            <TextBlock Margin="101,44,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Foreground="#FF9FF48A"
-                       Text="Search:"
-                       TextWrapping="Wrap"
-                       Visibility="Collapsed" />
-            <Rectangle Width="49"
-                       Height="50"
-                       Margin="5,165,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FFD9ED92"
-                       Stroke="Black" />
-            <Rectangle Width="48"
-                       Height="50"
-                       Margin="62,165,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FFB5E48C"
-                       Stroke="Black" />
-            <Rectangle Width="48"
-                       Height="50"
-                       Margin="5,221,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FF99D98C"
-                       Stroke="Black" />
-            <Rectangle Width="48"
-                       Height="50"
-                       Margin="62,221,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FF76C893"
-                       Stroke="Black" />
-            <Rectangle Width="48"
-                       Height="50"
-                       Margin="126,196,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FF52B69A"
-                       Stroke="Black" />
-            <Rectangle Width="49"
-                       Height="50"
-                       Margin="4,299,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FF34A0A4"
-                       Stroke="Black" />
-            <Rectangle Width="48"
-                       Height="50"
-                       Margin="62,299,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FF168AAD"
-                       Stroke="Black" />
-            <Rectangle Width="48"
-                       Height="50"
-                       Margin="5,354,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FF1A759F"
-                       Stroke="Black" />
-            <Rectangle Width="48"
-                       Height="50"
-                       Margin="62,354,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FF1E6091"
-                       Stroke="Black" />
-            <Rectangle Width="48"
-                       Height="50"
-                       Margin="126,329,0,0"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Fill="#FF184E77"
-                       Stroke="Black" />
-            <TextBox Width="73"
-                     Margin="101,60,0,0"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Left"
-                     Text="TextBox"
-                     TextWrapping="Wrap"
-                     Visibility="Collapsed" />
-            <Button Width="18"
-                    Height="18"
-                    Margin="175,60,0,0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    FontSize="11"
-                    Visibility="Collapsed"
-                    Content="🔍" />
-            <Button Width="10"
-                    Height="16"
-                    Margin="165,44,0,0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    Visibility="Collapsed"
-                    Content="i" />
-            <ComboBox Width="120"
-                      Margin="86,49,0,0"
-                      VerticalAlignment="Top"
-                      HorizontalAlignment="Left">
-                <Button Content="Button" />
-                <TextBox Width="120"
-                         Text="TextBox"
-                         TextWrapping="Wrap" />
-            </ComboBox>
-            <Button x:Name="OpenButton"
-                    Width="74"
-                    Height="21"
-                    Margin="140,6,0,0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    Click="OpenButton_click"
-                    RenderTransformOrigin="0.5,0.5"
-                    Content="Open File" />
+            <ComboBox HorizontalAlignment="Right" Margin="0,130,10,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding ViewModel.Currency, Mode=TwoWay}" ItemsSource="{Binding ViewModel.Currencies}"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,98,65,0" TextWrapping="Wrap" Text="Settings:" VerticalAlignment="Top" Foreground="#FF8A8C98" FontSize="20" FontWeight="Bold"/>
+            <TextBlock Text="Currency" Margin="0,133,142,0" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Top" Height="19" Foreground="#FF94B5F1" FontSize="15" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="101,44,0,0" TextWrapping="Wrap" Text="Search:" VerticalAlignment="Top" Foreground="#FF9FF48A" Visibility="Collapsed"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Margin="5,165,0,0" Stroke="Black" VerticalAlignment="Top" Width="49" Fill="#FFD9ED92"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="48" Fill="#FFB5E48C" Margin="62,165,0,0"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="48" Fill="#FF99D98C" Margin="5,221,0,0"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="48" Fill="#FF76C893" Margin="62,221,0,0"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="48" Fill="#FF52B69A" Margin="126,196,0,0"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Margin="4,299,0,0" Stroke="Black" VerticalAlignment="Top" Width="49" Fill="#FF34A0A4"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="48" Fill="#FF168AAD" Margin="62,299,0,0"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="48" Fill="#FF1A759F" Margin="5,354,0,0"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="48" Fill="#FF1E6091" Margin="62,354,0,0"/>
+            <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="48" Fill="#FF184E77" Margin="126,329,0,0"/>
+            <TextBox HorizontalAlignment="Left" Margin="101,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="73" Visibility="Collapsed"/>
+            <Button Content="🔍" HorizontalAlignment="Left" Height="18" Margin="175,60,0,0" VerticalAlignment="Top" Width="18" FontSize="11" Visibility="Collapsed"/>
+            <Button Content="i" HorizontalAlignment="Left" Height="16" Margin="165,44,0,0" VerticalAlignment="Top" Width="10" Visibility="Collapsed"/>
         </Grid>
 
 
