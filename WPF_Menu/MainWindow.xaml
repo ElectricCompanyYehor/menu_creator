@@ -41,8 +41,7 @@
                     <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="*" />
                     <DataGridTextColumn Header="Weight" Binding="{Binding Path=Weight}" Width="*" />
                     <DataGridTextColumn Header="Count of pieces" Binding="{Binding Path=CountOfPieces}" Width="95"/>
-                    <DataGridTextColumn Header="Count of pieces comment" Binding="{Binding Path=CountOfPiecesComment}" Width="150"/>
-                    <DataGridTemplateColumn Header="Unit"  IsReadOnly="False" Width="*">
+                    <DataGridTemplateColumn Header="Unit"  IsReadOnly="False" Width="150">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox ItemsSource="{Binding Units}" SelectedItem="{Binding Unit, Mode=TwoWay}" >

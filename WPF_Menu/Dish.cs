@@ -16,7 +16,7 @@ namespace WPF_Menu
 
         private double _weight;
 
-        public double Weight { get => _weight; set => Set<double>(()=>Weight, ref _weight, value); }
+        public double Weight { get => _weight; set => Set<double>(() => Weight, ref _weight, value); }
 
         private double _price;
 
@@ -26,18 +26,14 @@ namespace WPF_Menu
 
         public string Currency { get => _currency; set => Set<string>(() => Currency, ref _currency, value); }
 
-        private string _unit= _units.FirstOrDefault();
+        private string _unit = _units.FirstOrDefault();
 
         public string Unit { get => _unit; set => Set<string>(() => Unit, ref _unit, value); }
 
-        public List<string> Units { get => _units;}
+        public List<string> Units { get => _units; }
 
         private int _CountOfPieces;
 
         public int CountOfPieces { get => _CountOfPieces; set => Set<int>(() => CountOfPieces, ref _CountOfPieces, value); }
-
-        private string _CountOfPiecesComment;
-
-        public string CountOfPiecesComment { get => _CountOfPiecesComment; set => Set<string>(() => CountOfPiecesComment, ref _CountOfPiecesComment, value); }
     }
 }

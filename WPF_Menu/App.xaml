@@ -20,7 +20,7 @@
             <Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
             <Color x:Key="SelectedUnfocusedColor">#FFDDDDDD</Color>
 
-            <Color x:Key="ControlLightColor">White</Color>
+            <Color x:Key="ControlLightColor">#FF34A0A4</Color>
             <Color x:Key="ControlMediumColor">#FF7381F9</Color>
             <Color x:Key="ControlDarkColor">#FF211AA9</Color>
 
@@ -1027,7 +1027,7 @@
 
                         </Border.Background>
                     </Border>
-                    <Border Grid.Column="0"
+                    <Border Grid.Column="0" 
             CornerRadius="8"
             Margin="1" >
                         <Border.Background>
