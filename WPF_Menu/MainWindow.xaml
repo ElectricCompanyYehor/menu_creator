@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Menu"
         mc:Ignorable="d"
-        Title="Menu Creator" Height="450" Width="800" Icon="/piece-of-paper.png">
+        Title="Menu Creator" Height="450" Width="800" Icon="/piece-of-paper.png" FontSize="20">
     <Window.Background>
         <ImageBrush ImageSource="/FT_15.12.23_5factsXmas4_promo.jpg"/>
     </Window.Background>
@@ -74,9 +74,7 @@
             </Button>
             <CheckBox x:Name="Auto_save" Content="Auto Save" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Height="21" Width="82"/>
             <Button Content="Add" HorizontalAlignment="Left" Margin="29,50,0,0" VerticalAlignment="Top" Click="Button_Click">
-                <Button.Effect>
-                    <DropShadowEffect BlurRadius="5" Direction="50" Opacity="1" ShadowDepth="22"/>
-                </Button.Effect>
+                
             </Button>
             <ComboBox HorizontalAlignment="Right" Margin="0,130,10,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding ViewModel.Currency, Mode=TwoWay}" ItemsSource="{Binding ViewModel.Currencies}"/>
             <TextBlock HorizontalAlignment="Right" Margin="0,98,65,0" TextWrapping="Wrap" Text="Settings:" VerticalAlignment="Top" Foreground="#FF8A8C98" FontSize="20" FontWeight="Bold"/>
