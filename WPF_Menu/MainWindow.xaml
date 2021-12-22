@@ -4,39 +4,120 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Menu"
-        mc:Ignorable="d"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="Menu Creator" Height="450" Width="800" Icon="/piece-of-paper.png" FontSize="20">
     <Window.Background>
-        <ImageBrush ImageSource="/FT_15.12.23_5factsXmas4_promo.jpg"/>
+        <ImageBrush ImageSource="/FT_15.12.23_5factsXmas4_promo.jpg" />
     </Window.Background>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="429*"/>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="429*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="220" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Grid.RowSpan="2">
-            <Button x:Name="section1" Content="section" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section2" Content="section" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section3" Content="section" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section4" Content="section" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section5" Content="section" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section6" Content="section" HorizontalAlignment="Left" Margin="10,271,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section7"  Content="section" HorizontalAlignment="Left" Margin="10,291,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section8" Content="section" HorizontalAlignment="Left" Margin="10,311,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section9" Content="section" HorizontalAlignment="Left" Margin="10,331,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button x:Name="section10" Content="section" HorizontalAlignment="Left" Margin="10,351,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-            <Button Content="⬇" HorizontalAlignment="Left" Margin="3,115,0,0" VerticalAlignment="Top" Height="48" Width="44" FontSize="35" Visibility="Collapsed"/>
-            <Button Content="⬆" HorizontalAlignment="Left" Margin="3,67,0,0" VerticalAlignment="Top" Height="50" Width="44" FontSize="35" Visibility="Collapsed"/>
+        <Grid Grid.RowSpan="2" Grid.Column="0">
+            <Button x:Name="section1"
+                    Margin="10,175,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section2"
+                    Margin="10,193,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section3"
+                    Margin="10,213,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section4"
+                    Margin="10,233,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section5"
+                    Margin="10,253,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section6"
+                    Margin="10,271,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section7"
+                    Margin="10,291,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section8"
+                    Margin="10,311,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section9"
+                    Margin="10,331,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button x:Name="section10"
+                    Margin="10,351,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed"
+                    Content="section" />
+            <Button Width="44"
+                    Height="48"
+                    Margin="3,115,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    FontSize="35"
+                    Visibility="Collapsed"
+                    Content="⬇" />
+            <Button Width="44"
+                    Height="50"
+                    Margin="3,67,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    FontSize="35"
+                    Visibility="Collapsed"
+                    Content="⬆" />
         </Grid>
-        <Grid Grid.Column="1" Grid.RowSpan="2">
-            <TextBox x:Name="SectionName" HorizontalAlignment="Left" Height="48" Margin="52,20,0,0" TextWrapping="Wrap" Text="{Binding ViewModel.SelectedTab.Name, Mode=TwoWay}" VerticalAlignment="Top" Width="386" FontSize="35" TextAlignment="Center" Background="#55FFFFFF"/>
-            <DataGrid x:Name="DishesDataGrid" CanUserAddRows="True" CanUserDeleteRows="True"  AutoGenerateColumns="False"  SelectedValue="{Binding ViewModel.SelectedTab.SelectedDish}" ItemsSource="{Binding ViewModel.SelectedTab.Dishes}" Margin="10,74,10,0">
+        <Grid Grid.RowSpan="2" Grid.Column="1">
+            <TextBox x:Name="SectionName"
+                     Width="386"
+                     Height="48"
+                     Margin="52,20,0,0"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left"
+                     Background="#55FFFFFF"
+                     FontSize="35"
+                     Text="{Binding ViewModel.SelectedTab.Name,
+                                    Mode=TwoWay}"
+                     TextAlignment="Center"
+                     TextWrapping="Wrap" />
+            <DataGrid x:Name="DishesDataGrid"
+                      Margin="10,74,10,0"
+                      ItemsSource="{Binding ViewModel.SelectedTab.Dishes}"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="True"
+                      CanUserDeleteRows="True"
+                      SelectedValue="{Binding ViewModel.SelectedTab.SelectedDish}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="*" />
                     <DataGridTextColumn Header="Weight" Binding="{Binding Path=Weight}" Width="*" />
@@ -44,10 +125,10 @@
                     <DataGridTemplateColumn Header="Unit"  IsReadOnly="False" Width="150">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding Units}" SelectedItem="{Binding Unit, Mode=TwoWay}" >
+                                <ComboBox ItemsSource="{Binding ElementName=DishesDataGrid, Path=DataContext.ViewModel.Units, Mode=OneTime}" SelectedItem="{Binding Unit, Mode=TwoWay}" >
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding}"/>
+                                            <TextBlock Text="{Binding}" />
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>

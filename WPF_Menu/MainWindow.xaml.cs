@@ -1,18 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPF_Menu
 {
@@ -23,94 +16,58 @@ namespace WPF_Menu
     {
         public MainWindowViewModel ViewModel { get; set; }
 
-        string what_section(int number)
+        private async void SaveButton_click(object sender, RoutedEventArgs e)
         {
-            return "section" + number;
-        }
-
-        bool used;
-
-        private void section1_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section2_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section3_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section4_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section5_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section6_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section7_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section8_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section9_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void section10_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SaveButton_click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-        class Menu
-        {
-            public void SaveAs()
+            SaveFileDialog openFileDialog = new SaveFileDialog();
+            openFileDialog.Filter = "My Restaurant Menu (*.mrm) | *.mrm; ";
+            if (openFileDialog.ShowDialog() == true)
             {
+                var filename = openFileDialog.FileName;
+                var tab = new TabSerializable()
+                {
+                    Currency = ViewModel.Currency,
+                    Name = this.ViewModel.SelectedTab.Name,
+                    Dishes = new List<DishSerializable>()
+                };
 
-            }
-            public void Save()
-            {
+                foreach (var dish in ViewModel.SelectedTab.Dishes)
+                {
+                    tab.Dishes.Add(new DishSerializable() { Name = dish.Name, Currency = dish.Currency, Price = dish.Price, Weight = dish.Weight, Unit = dish.Unit });
+                }
 
-            }
-            public void Show()
-            {
-
+                string output = JsonConvert.SerializeObject(tab);
+                await File.WriteAllTextAsync(filename, output);
             }
 
         }
 
-        int this_section = 1;
-        
+        private async void OpenButton_click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var filename = openFileDialog.FileName;
+                var data = await File.ReadAllTextAsync(filename);
+                var loadedTab = JsonConvert.DeserializeObject<TabSerializable>(data);
+
+
+                ViewModel.SelectedTab.Name = loadedTab.Name;
+                ViewModel.SelectedTab.Dishes.Clear();
+                foreach (var dish in loadedTab.Dishes)
+                {
+                    ViewModel.SelectedTab.Dishes.Add(new Dish() { Name = dish.Name, Currency = dish.Currency, Price = dish.Price, Weight = dish.Weight, Unit = dish.Unit });
+                }
+
+                ViewModel.Currency = loadedTab.Currency;
+            }
+        }
 
         public MainWindow()
         {
-
             InitializeComponent();
-
 
             ViewModel = new MainWindowViewModel();
             DataContext = this;
-            if (used == false)
-            {
-                //tabs.Named[1] = true;
-                // tabs.editor = true;
-                used = true;
-            }
 
             Tab first = new Tab();
 
@@ -118,21 +75,12 @@ namespace WPF_Menu
 
             ViewModel.Tabs.Add(first);
 
-            first.Dishes.Add(new Dish() { Name = "Your meal/drink", Weight=250, Price=110, Currency= ViewModel.Currencies.First()});
-            first.Name = "Menu name";
-
-
+            first.Dishes.Add(new Dish() { Name = "Your meal/drink", Weight = 250, Price = 110, Currency = ViewModel.Currencies.First(), Unit = ViewModel?.Units?.FirstOrDefault() });
         }
-        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
-        private static bool IsTextAllowed(string text)
-        {
-            return !_regex.IsMatch(text);
-        }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SelectedTab.Dishes.Add(new Dish() {   Name = "New meal/drink", Weight=0, CountOfPieces=1, Price=0, Currency = ViewModel.Currency});
+            ViewModel.SelectedTab.Dishes.Add(new Dish() { Name = "New meal/drink", Weight = 0, Price = 0, Currency = ViewModel.Currency });
         }
     }
 }
