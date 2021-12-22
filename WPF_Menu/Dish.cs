@@ -9,7 +9,7 @@ namespace WPF_Menu
 {
     public class Dish : ViewModelBase
     {
-        private static List<string> _units = new List<string>() { "g.", "kg.", "l.", "ml.", "pieces" };
+        private string _unit;
 
         private string _name;
         public string Name { get => _name; set => Set<string>(() => Name, ref _name, value); }
@@ -26,11 +26,7 @@ namespace WPF_Menu
 
         public string Currency { get => _currency; set => Set<string>(() => Currency, ref _currency, value); }
 
-        private string _unit= _units.FirstOrDefault();
-
-        public string Unit { get => _unit; set => Set<string>(() => Unit, ref _unit, value); }
-
-        public List<string> Units { get => _units;}
+       public string Unit { get => _unit; set => Set<string>(() => Unit, ref _unit, value); }
 
         private int _CountOfPieces;
 
@@ -39,5 +35,6 @@ namespace WPF_Menu
         private string _CountOfPiecesComment;
 
         public string CountOfPiecesComment { get => _CountOfPiecesComment; set => Set<string>(() => CountOfPiecesComment, ref _CountOfPiecesComment, value); }
+
     }
 }

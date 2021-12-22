@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace WPF_Menu
 {
@@ -9,25 +10,28 @@ namespace WPF_Menu
         private static List<string> _currencies = new List<string>() { "USD", "UAH", "EUR", "TRY" };
 
         public List<Tab> Tabs { get; set; }
-        private Tab selectedTab;
+        private Tab _selectedTab;
 
         public Tab SelectedTab
         {
-            get => selectedTab;
+            get => _selectedTab;
 
             set
             {
-                selectedTab = value;
+                Set(() => SelectedTab, ref _selectedTab, value);
             }
         }
 
         private Dish _selectedDish;
 
+        private static List<string> _units = new List<string>() { "g.", "kg.", "l.", "ml.", "pieces" };
+
+        public List<string> Units { get => _units; }
 
         public Dish SelectedDish
         {
             get => _selectedDish;
-            set => _selectedDish = value;
+            set => Set(() => SelectedDish, ref _selectedDish, value);
         }
 
         public static string _currency = _currencies.First();
@@ -38,13 +42,14 @@ namespace WPF_Menu
             set
             {
                 Set<string>(() => Currency, ref _currency, value);
-                foreach (Dish dish in selectedTab.Dishes)
+                foreach (Dish dish in _selectedTab.Dishes)
                 {
                     dish.Currency = _currency;
                 }
             }
         }
 
+        [JsonIgnore]
         public List<string> Currencies
         {
             get => _currencies;

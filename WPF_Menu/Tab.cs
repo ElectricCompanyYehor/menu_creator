@@ -5,7 +5,11 @@ namespace WPF_Menu
 {
     public class Tab : ViewModelBase
     {
-        public string Name { get; set; }
+        private string _name;
+        public string Name {
+            get => _name;
+            set => Set(() => Name, ref _name, value);
+        }
 
         // public bool editor;
         private ObservableCollection<Dish> _dishes = new ObservableCollection<Dish>();
