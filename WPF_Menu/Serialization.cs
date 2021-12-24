@@ -17,6 +17,7 @@ namespace WPF_Menu
     {
         public string Name { get; set; }
         public string Currency { get; set; }
+        public string Comment { get; set; }
         public List<DishSerializable> Dishes { get; set; }
     }
 }

@@ -28,7 +28,8 @@ namespace WPF_Menu
                 {
                     Currency = ViewModel.Currency,
                     Name = this.ViewModel.SelectedTab.Name,
-                    Dishes = new List<DishSerializable>()
+                    Dishes = new List<DishSerializable>(),
+                    Comment = ViewModel.Comment
                 };
 
                 foreach (var dish in ViewModel.SelectedTab.Dishes)
@@ -66,6 +67,7 @@ namespace WPF_Menu
             }
 
             ViewModel.Currency = loadedTab.Currency;
+                ViewModel.Comment = loadedTab.Comment;
         }
 
         public MainWindow()
