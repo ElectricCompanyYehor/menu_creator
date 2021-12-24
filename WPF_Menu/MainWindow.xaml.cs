@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -47,24 +48,31 @@ namespace WPF_Menu
             if (openFileDialog.ShowDialog() == true)
             {
                 var filename = openFileDialog.FileName;
-                var data = await File.ReadAllTextAsync(filename);
-                var loadedTab = JsonConvert.DeserializeObject<TabSerializable>(data);
-
-
-                ViewModel.SelectedTab.Name = loadedTab.Name;
-                ViewModel.SelectedTab.Dishes.Clear();
-                foreach (var dish in loadedTab.Dishes)
-                {
-                    ViewModel.SelectedTab.Dishes.Add(new Dish() { Name = dish.Name, Currency = dish.Currency, Price = dish.Price, Weight = dish.Weight, Unit = dish.Unit });
-                }
-
-                ViewModel.Currency = loadedTab.Currency;
+                await LoadFromFile(filename);
             }
+        }
+
+        private async System.Threading.Tasks.Task LoadFromFile(string filename)
+        {
+            var data = await File.ReadAllTextAsync(filename);
+            var loadedTab = JsonConvert.DeserializeObject<TabSerializable>(data);
+
+
+            ViewModel.SelectedTab.Name = loadedTab.Name;
+            ViewModel.SelectedTab.Dishes.Clear();
+            foreach (var dish in loadedTab.Dishes)
+            {
+                ViewModel.SelectedTab.Dishes.Add(new Dish() { Name = dish.Name, Currency = dish.Currency, Price = dish.Price, Weight = dish.Weight, Unit = dish.Unit });
+            }
+
+            ViewModel.Currency = loadedTab.Currency;
         }
 
         public MainWindow()
         {
             InitializeComponent();
+
+            Loaded += MainWindow_Loaded;
 
             ViewModel = new MainWindowViewModel();
             DataContext = this;
@@ -76,6 +84,23 @@ namespace WPF_Menu
             ViewModel.Tabs.Add(first);
 
             first.Dishes.Add(new Dish() { Name = "Your meal/drink", Weight = 250, Price = 110, Currency = ViewModel.Currencies.First(), Unit = ViewModel?.Units?.FirstOrDefault() });
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                var fileName = args[1];
+                if (File.Exists(fileName))
+                {
+                    var extension = Path.GetExtension(fileName);
+                    if (extension == ".mrm")
+                    {
+                        LoadFromFile(fileName);
+                    }
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
