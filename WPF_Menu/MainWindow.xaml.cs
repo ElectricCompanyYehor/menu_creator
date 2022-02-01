@@ -21,6 +21,7 @@ namespace WPF_Menu
         {
             SaveFileDialog openFileDialog = new SaveFileDialog();
             openFileDialog.Filter = "My Restaurant Menu (*.mrm) | *.mrm; ";
+            openFileDialog.FileName = ViewModel.SelectedTab.Name;
             if (openFileDialog.ShowDialog() == true)
             {
                 var filename = openFileDialog.FileName;
@@ -85,9 +86,16 @@ namespace WPF_Menu
 
             ViewModel.Tabs.Add(first);
 
-            first.Dishes.Add(new Dish() { Name = "Your meal/drink", Weight = 250, Price = 110, Currency = ViewModel.Currencies.First(), Unit = ViewModel?.Units?.FirstOrDefault() });
+            first.Dishes.Add(new Dish() { Name = "Your first meal/drink", Weight = 0, CountOfPieces = 1, Pennies = 0, Price = 0, Currency = ViewModel.Currencies.First(), Unit = ViewModel?.Units?.FirstOrDefault() });
         }
 
+        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+        private static readonly Regex _penniesRegex = new Regex("[^0-9.-]{1,2}");
+        
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var args = Environment.GetCommandLineArgs();
@@ -105,9 +113,9 @@ namespace WPF_Menu
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            ViewModel.SelectedTab.Dishes.Add(new Dish() { Name = "New meal/drink", Weight = 0, Price = 0, Currency = ViewModel.Currency });
+            e.Handled =! IsTextAllowed(e.Text);
         }
     }
 }

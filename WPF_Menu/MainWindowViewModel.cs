@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -71,9 +72,39 @@ namespace WPF_Menu
             }
         }
 
+        public RelayCommand Add { get; set; }
+        private string _addCount = "1";
+
+        public string AddCount
+        {
+            get => _addCount;
+
+            set
+            {
+                Set(() => AddCount, ref _addCount, value);
+            }
+        }
         public MainWindowViewModel()
         {
             Tabs = new List<Tab>();
+            Add = new RelayCommand(() =>
+            {
+                if (!string.IsNullOrEmpty(_addCount))
+                {
+                    AddCount.Replace("-", "");
+
+                    for (int i = 0; i < int.Parse(AddCount); i++)
+                    {
+                        SelectedTab.Dishes.Add(new Dish() { Name = "New meal/drink", Weight = 0, Price = 0, Currency = this.Currency, CountOfPieces = 1, Unit = Units?.FirstOrDefault() });
+                    }
+
+                }
+                else
+                {
+                    AddCount = "1";
+                }
+
+            });
         }
     }
 

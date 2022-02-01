@@ -13,5 +13,6 @@ namespace WPF_Menu
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
